@@ -9,8 +9,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Google Maps Demo',
-      home: MapSample(),
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Simple Maps App'),
+            backgroundColor: Colors.green[700],
+          ),
+          body: MapSample()),
     );
   }
 }
@@ -22,25 +28,22 @@ class MapSample extends StatefulWidget {
 
 class MapSampleState extends State<MapSample> {
   late GoogleMapController mapController;
- void _onMapCreated(GoogleMapController controller) {
+  void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
-
 
   static final CameraPosition _position = CameraPosition(
     target: LatLng(16.0319106, 108.2205418),
     zoom: 16.25,
   );
 
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _position,
-        onMapCreated: _onMapCreated
-      ),
+          mapType: MapType.hybrid,
+          initialCameraPosition: _position,
+          onMapCreated: _onMapCreated),
     );
   }
 }
